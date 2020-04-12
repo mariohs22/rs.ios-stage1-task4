@@ -5,8 +5,6 @@
 @property (nonatomic, assign) Node *left;
 @property (nonatomic, assign) Node *right;
 - (instancetype)initWithValue:(NSNumber *)value;
-- (Node *) insertLeft:(NSNumber *)value;
-- (Node *) insertRight:(NSNumber *) value;
 @end
 
 @interface FullBinaryTrees : NSObject
