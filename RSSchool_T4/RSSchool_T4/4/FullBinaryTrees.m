@@ -21,10 +21,37 @@
     
     for (Node *n in nodes) {
         NSArray *arrrr = @[];
-        printTree(n, 0, arrrr);
+        //printTree(n, 0, arrrr);
+        arrrr = [self levelOrder:n];
         NSLog(@"%@", arrrr);
     }
     return 0;
+}
+
+-(NSMutableArray *)levelOrder:(Node *)treeNode
+{
+   NSMutableArray *levelOrderArray = [NSMutableArray array];
+   if (treeNode == nil) return levelOrderArray;
+  
+   NSMutableArray *queue = [NSMutableArray array];
+   [queue addObject: treeNode];
+   while (queue.count != 0) {
+     NSMutableArray *eachLevelArray = [NSMutableArray array];
+     int size = (int)queue.count;
+     for (int i = 0; i<size; i++) {
+        Node *node = [queue firstObject];
+        [queue removeObjectAtIndex: 0];
+        [eachLevelArray addObject: node];
+        if (node.left)  {
+          [queue addObject: node.left];
+        }
+        if (node.right) {
+          [queue addObject: node.right];
+        }
+     }
+     [levelOrderArray addObject: eachLevelArray];
+   }
+  return levelOrderArray;
 }
 
 void printTree(Node *node, int level, NSArray *arr) {
